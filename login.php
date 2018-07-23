@@ -18,6 +18,7 @@
 
 <body>
 
+    <!-- Header-->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark primary-color">
             <a class="navbar-brand" href="http://localhost:8000">Landingpage Test</a>
@@ -37,7 +38,9 @@
             </div>
         </nav>
     </header>
+    <!-- Header-->
 
+    <!-- Section -->
     <section>
         <div class="container container__middle container__table">
             <form method="post" action="export.php">
@@ -60,6 +63,17 @@
             </form>
         </div>
     </section>
+    <!-- Section -->
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright Landing Test</div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
 
     <!-- Livevalidation Standalone -->
     <script src="planet_framework/js/livevalidation_standalone_modified.js"></script>
