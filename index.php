@@ -21,120 +21,121 @@ if(!isset($_SESSION['provenance']))
 <html lang="fr">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
 
-	<title></title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/shadowbox.css">
-		
-	<script src="planet_framework/js/livevalidation_standalone_modified.js"></script>
-	<script src="planet_framework/js/planet_formvalidator.js"></script>
-	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="js/shadowbox.js"></script>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-	
-	<script type="text/javascript">
-
-		Shadowbox.init();
-		
-		window.onload = function() {
-			//initValidation('<?php echo $form_id; ?>');
-			
-			<?php if(isset($_SESSION[$form_id]["validationMessage"]) && !empty($_SESSION[$form_id]["validationMessage"])) : ?>
-
-				Shadowbox.open({
-					content:    '<div class="<?php echo $_SESSION[$form_id]["validationMessageClass"]; ?>"><?php echo addslashes($_SESSION[$form_id]["validationMessage"]); ?><br/><br/> <a href="javascript:Shadowbox.close()">Fermer</a></div>',
-					player:     "html",
-					height:     220,
-					width:      450
-				});
-			
-			<?php endif; ?>
-		}
-
-	</script>
-
+	<title>Landingpage Test</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+    <!-- Shadowbox -->
+	<link rel="stylesheet" type="text/css" href="css/shadowbox.css">
+    <!-- Styles CSS-->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
 <body>
 
-	<div class="pagewrapper">
-		
-		<header class="header"></header>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+            <a class="navbar-brand" href="http://localhost:8000">Landingpage Test</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://localhost:8000">Landing Page <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/login.php">CSV</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-		<div class="container container__middle container__table">
-			<div class="column col-6 visu"></div>
+    <section>
+        <div class="container container__middle container__table">
+            <form method="post" action="traitement.php" id="<?php echo $form_id; ?>">
+                <div class="form_row cf">
+                    <div class="form_column form_column50 required spacing<?php if(in_array("civilite", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
+                        <select class="form-control" name="civilite" id="pfo_civilite">
+                            <option value="" disabled selected>Choisir votre civilité</option>
+                            <option value="mme">Mme</option>
+                            <option value="m.">M.</option>
+                        </select>
+                    </div>
+                    <div class="md-form form_column form_column50 required spacing<?php if(in_array("nom", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
+                        <input placeholder="Nom" type="text" name="nom" id="pfo_nom" value="<?php if (isset($_SESSION[$form_id]["nom"])) {echo $_SESSION[$form_id]["nom"];}elseif(isset($_GET['v1'])){echo $_GET['v1'];} ?>" class="form-control">
+                        <label for="pfo_nom">Votre nom</label>
+                    </div>
+                </div>
 
-			<div class="column col-6 right">
+                <div class="form_row cf">
+                    <div class="md-form form_column form_column50 required spacing<?php if(in_array("prenom", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
+                        <input placeholder="Prénom" type="text" name="prenom" id="pfo_prenom" value="<?php if (isset($_SESSION[$form_id]["prenom"])) {echo $_SESSION[$form_id]["prenom"];}elseif(isset($_GET['v2'])){echo $_GET['v2'];} ?>" class="form-control">
+                        <label for="pfo_prenom">Votre prénom</label>
+                    </div>
+                    <div class="md-form form_column form_column50 required spacing<?php if(in_array("email", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
+                        <input placeholder="Email" type="email" name="email" id="pfco_email" value="<?php echo $_SESSION[$form_id]["email"]; ?>" class="form-control">
+                        <label for="pfco_email">Votre Email</label>
+                    </div>
+                </div>
+                <input type="hidden" name="opt_in" value="" />
 
-				<form method="post" action="traitement.php" id="<?php echo $form_id; ?>">
-				
-					<div class="form_row cf">
-						<div class="form_column form_column50 required spacing<?php if(in_array("nom", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Nom" type="text" name="nom" id="pfo_nom" value="<?php if (isset($_SESSION[$form_id]["nom"])) {echo $_SESSION[$form_id]["nom"];}elseif(isset($_GET['v1'])){echo $_GET['v1'];} ?>" />
-						</div>
+                <div class="spacing<?php if(in_array("opt_in", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
+                    <div class="custom-control custom-checkbox checkbox">
+                        <input type="checkbox" class="custom-control-input" name="opt_in" id="opt_in" value="1" <?php if($_SESSION[$form_id]["opt_in"] == "1") echo 'checked="checked"'; ?> />
+                        <label for="opt_in" class="custom-control-label">je souhaite m’abonner à la Newsletter</label>
+                    </div>
+                </div>
 
-						<div class="form_column form_column50 required spacing<?php if(in_array("prenom", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Prénom" type="text" name="prenom" id="pfo_prenom" value="<?php if (isset($_SESSION[$form_id]["prenom"])) {echo $_SESSION[$form_id]["prenom"];}elseif(isset($_GET['v2'])){echo $_GET['v2'];} ?>" />
-						</div>
-					</div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary" type="submit">Valider</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-					<div class="form_row cf">				
-						<div class="form_column form_column50 required spacing<?php if(in_array("email", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Email" type="email" name="email" id="pfco_email" value="<?php echo $_SESSION[$form_id]["email"]; ?>" />
-						</div>
-						<div class="form_column form_column50 required spacing<?php if(in_array("telephone", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Téléphone" type="tel" name="telephone" id="pfco_telephone" value="<?php echo $_SESSION[$form_id]["telephone"]; ?>" />
-						</div>
-					</div>
-					<input type="hidden" name="opt_in" value="" />
-				
-					<div class="form_row cf">				
-						<div class="form_column form_column65 spacing<?php if(in_array("adresse", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Adresse" type="tel" name="adresse" id="pfco_adresse" value="<?php echo $_SESSION[$form_id]["adresse"]; ?>" />
-						</div>
+    <!-- Livevalidation Standalone -->
+    <script src="planet_framework/js/livevalidation_standalone_modified.js"></script>
+    <!-- Planet Formvalidator -->
+    <script src="planet_framework/js/planet_formvalidator.js"></script>
+    <!-- Shadowbox -->
+    <script src="js/shadowbox.js"></script>
+    <!-- Shadowbox init -->
+    <script type="text/javascript">
 
-						<div class="form_column form_column35 spacing<?php if(in_array("code_postal", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Code postal" type="text" name="code_postal" id="pfco_code_postal" value="<?php if (isset($_SESSION[$form_id]["code_postal"])) {echo $_SESSION[$form_id]["code_postal"];}elseif(isset($_GET['v3'])){echo $_GET['v3'];} ?>" />
-						</div>
-					</div>
+        Shadowbox.init();
 
-					<div class="form_row cf">
-						<div class="form_column form_column50 spacing<?php if(in_array("ville", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Ville" type="tel" name="ville" id="pfco_ville" value="<?php echo $_SESSION[$form_id]["ville"]; ?>" />
-						</div>
-						<div class="form_column form_column50 spacing<?php if(in_array("entreprise", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-							<input placeholder="Entreprise" type="tel" name="entreprise" id="pfco_entreprise" value="<?php echo $_SESSION[$form_id]["entreprise"]; ?>" />
-						</div>
-					</div>
+        window.onload = function() {
+            //initValidation('<?php echo $form_id; ?>');
 
-					<div class="spacing<?php if(in_array("opt_in", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
-						<span id="pfo_opt_in">
-							<span class="checkbox">
-								<input type="checkbox" name="opt_in" id="opt_in" value="1" <?php if($_SESSION[$form_id]["opt_in"] == "1") echo 'checked="checked"'; ?> />
-								<label for="opt_in" class="">je souhaite m’abonner à la Newsletter</label>
-							</span>
-						</span>
-					</div>
+            <?php if(isset($_SESSION[$form_id]["validationMessage"]) && !empty($_SESSION[$form_id]["validationMessage"])) : ?>
 
-				</form>
+            Shadowbox.open({
+                content:    '<div class="<?php echo $_SESSION[$form_id]["validationMessageClass"]; ?>"><?php echo addslashes($_SESSION[$form_id]["validationMessage"]); ?><br/><br/> <a href="javascript:Shadowbox.close()">Fermer</a></div>',
+                player:     "html",
+                height:     220,
+                width:      450
+            });
 
+            <?php endif; ?>
+        }
 
-			</div>
-
-		</div>
-
-
-			
-
-	</div> <!-- // .pagewrapper -->
+    </script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
 
 </body>
 

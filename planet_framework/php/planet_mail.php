@@ -116,7 +116,7 @@ class PlanetMail
 		{
 			// L'envoi de l'email passe par un serveur SMTP
 			
-			$this->transport = Swift_SmtpTransport::newInstance($smtp_host, $smtp_port);
+			$this->transport = Swift_SmtpTransport::newInstance($smtp_host, $smtp_port,'tls');
 			
 			if($smtp_auth)
 			{

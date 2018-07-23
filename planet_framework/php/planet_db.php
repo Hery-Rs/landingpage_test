@@ -85,12 +85,14 @@ class PlanetDb
         $conf = new PlanetConfig();
         
         if(empty($filename))
+        {
             $filename = strtolower(str_replace(' ', '-', $conf->siteName)) . '_' . $table . '_' . date("d/m/Y") . ".csv";
-        
-	 	$res = self::fetchAll($table, 'array');
-        
-        header("Content-Type: application/csv-tab-delimited-table");
-        header("Content-disposition: : attachment; filename=" . $filename);
+        }
+
+            $res = self::fetchAll($table, 'array');
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="export_sauvegarde_geekwizz.csv"');
 
         if(count($res) > 0)
         {

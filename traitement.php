@@ -15,7 +15,7 @@ $validationMessageClass = "confirmation_message";
 $redirectOnFailure = "http://" . $_SERVER["HTTP_HOST"] . "/";
 $redirectOnSuccess = $redirectOnFailure;
 
-$facultatifs = array('adresse', 'code_postal', 'ville', 'entreprise', 'opt_in');
+$facultatifs = array('opt_in');
 $f = new PlanetFilter();
 $f->filtrer("post", $facultatifs);
 
@@ -29,21 +29,22 @@ if($f->succesFiltrage)
 	$db = new PlanetDb();
 	
 	$data = array(
-		"id"                  => "''",
+		//"id"                  => "''",
+        "civilite"            => $f->get("civilite"),
 		"nom"                 => $f->get("nom"),
 		"prenom"              => $f->get("prenom"),
 		"email"               => $f->get("email"),
-		"adresse"             => $f->get("adresse"),
-		"telephone"           => $f->get("telephone"),
-		"code_postal"         => $f->get("code_postal"),
-		"ville"               => $f->get("ville"),
-		"entreprise"          => $f->get("entreprise"),
+		//"adresse"             => $f->get("adresse"),
+		//"telephone"           => $f->get("telephone"),
+		//"code_postal"         => $f->get("code_postal"),
+		//"ville"               => $f->get("ville"),
+		//"entreprise"          => $f->get("entreprise"),
 		"opt_in"              => $f->get("opt_in"),
 		"date_enregistrement" => date("Y-m-d H:i:s"),
 		"provenance"          => $_SESSION['provenance']
 	);
 	
-	$query = $db->getPreparedInsertQuery("", $data);
+	$query = $db->getPreparedInsertQuery("user", $data);
 	$stmt = $db->connexion->prepare($query["query"]);
 	$res = $stmt->execute($query["params"]);
     $id = $db->connexion->lastInsertId();
