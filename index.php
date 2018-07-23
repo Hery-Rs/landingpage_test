@@ -33,43 +33,37 @@ if(!isset($_SESSION['provenance']))
     <!-- Shadowbox -->
 	<link rel="stylesheet" type="text/css" href="css/shadowbox.css">
     <!-- Styles CSS-->
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body>
 
     <!-- Header-->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-            <a class="navbar-brand" href="http://localhost:8000">Landingpage Test</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000">Landing Page <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/login.php">CSV</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+        <?php include('templates_layout/header.php'); ?>
     <!-- Header -->
 
     <!-- Section -->
     <section>
-        <div class="container container__middle container__table">
+        <div class="recommandation container container__middle container__table">
+            <h3>Recommandations</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Lorem ipsum dolor sit amet.</li>
+                <li class="list-group-item">Consectetur adipiscing elit.</li>
+                <li class="list-group-item">Sed do eiusmod tempor incididunt ut.</li>
+                <li class="list-group-item">Labore et dolore magna aliqua.</li>
+                <li class="list-group-item">Vestibulum at eros.</li>
+            </ul>
+        </div>
+
+        <div class="formulaire container container__middle container__table">
+            <h3>Formulaire d'adhésion</h3>
             <form method="post" action="traitement.php" id="<?php echo $form_id; ?>">
                 <div class="form_row cf">
                     <div class="form_column form_column50 required spacing<?php if(in_array("civilite", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
                         <select class="form-control" name="civilite" id="pfo_civilite">
-                            <option value="" disabled selected>Choisir votre civilité</option>
-                            <option value="mme">Mme</option>
-                            <option value="m.">M.</option>
+                            <option value="">Choisir votre civilité</option>
+                            <option value="Mme" <?php if(isset($_SESSION[$form_id]["civilite"]) && ($_SESSION[$form_id]["civilite"] == "Mme")) {echo "selected";}?>>Mme</option>
+                            <option value="M." <?php if(isset($_SESSION[$form_id]["civilite"]) && ($_SESSION[$form_id]["civilite"] == "M.")) {echo "selected";}?>>M.</option>nom
                         </select>
                     </div>
                     <div class="md-form form_column form_column50 required spacing<?php if(in_array("nom", (array)$_SESSION[$form_id]["error_fields"])) echo " champ_invalide"; ?>">
@@ -106,13 +100,7 @@ if(!isset($_SESSION['provenance']))
     <!-- Section -->
 
     <!-- Footer -->
-    <footer class="page-footer font-small blue">
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2018 Copyright Landing Test</div>
-        <!-- Copyright -->
-
-    </footer>
+        <?php include('templates_layout/footer.php'); ?>
     <!-- Footer -->
 
     <!-- Livevalidation Standalone -->

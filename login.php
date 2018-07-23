@@ -12,37 +12,20 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
     <!-- Styles CSS-->
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 
 </head>
 
 <body>
 
     <!-- Header-->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-            <a class="navbar-brand" href="http://localhost:8000">Landingpage Test</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000">Landing Page <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/login.php">CSV</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+        <?php include('templates_layout/header.php'); ?>
     <!-- Header-->
 
     <!-- Section -->
     <section>
-        <div class="container container__middle container__table">
+        <div class="login-csv container container__middle container__table">
+            <h3>ADMIN <span>Récupération des données format CSV</span</h3>
             <form method="post" action="export.php">
                 <div class="form_row cf">
                     <div class="md-form form_column form_column50 required spacing">
@@ -66,13 +49,7 @@
     <!-- Section -->
 
     <!-- Footer -->
-    <footer class="page-footer font-small blue">
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2018 Copyright Landing Test</div>
-        <!-- Copyright -->
-
-    </footer>
+        <?php include('templates_layout/footer.php'); ?>
     <!-- Footer -->
 
     <!-- Livevalidation Standalone -->

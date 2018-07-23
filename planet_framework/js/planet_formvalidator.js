@@ -2,6 +2,12 @@
  * Paramètres des contrôles spécifiques à faire sur les champs usuels (autres que la présence)
  */
 var commonFields = {
+    civilite : {	// Valeurs acceptées : "Mme", "M."
+        "constructParams" : { validMessage: ' ', wait: 500, onlyOnBlur: true },
+        "validations" : [
+            {"type" : Validate.Format, "params" : { match: "civilite", failureMessage : "Champ obligatoire" }}
+        ]
+    },
 	code_postal : {	// Valeurs acceptées : tous les codes postaux français
 		"constructParams" : { validMessage: ' ', wait: 500, onlyOnBlur: true },
 		"validations" : [

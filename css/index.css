@@ -1,0 +1,13 @@
+html {
+    height: 100%;
+}
+
+h3 {
+    color: #4285f4;
+}
+
+.recommandation, .formulaire {
+    max-width: 600px;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+}

@@ -42,7 +42,7 @@ class PlanetFilter
 		"civilite" => array(
 			"filter" => FILTER_VALIDATE_REGEXP,
 			"options" => array(
-				"regexp" => "/(M|Mr|Mme|Mlle|M.|Mr.|Mme.|Mlle.|Monsieur|Madame|Mademoiselle)/i"
+				"regexp" => "/(Mme|M.)/i"
 			)
 		),
 		
