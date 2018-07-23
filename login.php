@@ -43,7 +43,6 @@
                 <div class="text-center mt-4">
                     <button class="btn btn-primary" type="submit">Valider</button>
                 </div>
-                <div class="form-error"></div>
             </form>
         </div>
     </section>
