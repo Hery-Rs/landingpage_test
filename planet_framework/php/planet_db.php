@@ -92,7 +92,7 @@ class PlanetDb
             $res = self::fetchAll($table, 'array');
 
         header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="export_sauvegarde_geekwizz.csv"');
+        header('Content-Disposition: attachment; filename="export_bdd.csv"');
 
         if(count($res) > 0)
         {
